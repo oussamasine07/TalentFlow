@@ -25,4 +25,40 @@ public class RegisterServlet extends HttpServlet {
         RequestDispatcher rs = req.getRequestDispatcher("/views/auth/register.jsp");
         rs.forward(req, res);
     }
+
+    protected void doPost (HttpServletRequest req, HttpServletResponse res)
+        throws ServletException, IOException
+    {
+        
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
