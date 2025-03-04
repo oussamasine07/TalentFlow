@@ -203,7 +203,7 @@
 							</ul>
 
 							<div class="other-option">
-								<a href="sign-up.html" class="signup-btn">Sign Up</a>
+								<a href="${pageContext.request.contextPath}/auth/register" class="signup-btn">Sign Up</a>
 								<a href="sign-in.html" class="signin-btn">Sign In</a>
 							</div>
 						</div>
