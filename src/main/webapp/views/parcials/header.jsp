@@ -1,4 +1,5 @@
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="zxx">
     <head>
@@ -6,27 +7,27 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/assets/css/bootstrap.min.css">
         <!-- Owl Carousel CSS -->
-        <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/owl.carousel.min.css">
         <!-- Owl Carousel Theme Default CSS -->
-        <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/owl.theme.default.min.css">
         <!-- Box Icon CSS-->
-        <link rel="stylesheet" href="assets/css/boxicons.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/boxicons.min.css">
         <!-- Flaticon CSS-->
-        <link rel="stylesheet" href="assets/fonts/flaticon/flaticon.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/fonts/flaticon/flaticon.css">
         <!-- Meanmenu CSS -->
-        <link rel="stylesheet" href="assets/css/meanmenu.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/meanmenu.css">
         <!-- Style CSS -->
-        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/style.css">
 		<!-- Dark CSS -->
-        <link rel="stylesheet" href="assets/css/dark.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/dark.css">
 		<!-- Responsive CSS -->
-        <link rel="stylesheet" href="assets/css/responsive.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css">
         <!-- Title CSS -->
         <title>Jovie - Job Board & Hiring Portal HTML Template</title>
         <!-- Favicon -->
-        <link rel="icon" type="image/png" href="assets/img/favicon.png">
+        <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/assets/img/favicon.png">
 	</head>
 
   	<body>
@@ -59,7 +60,7 @@
 			<!-- Menu For Mobile Device -->
 			<div class="mobile-nav">
 				<a href="index.html" class="logo">
-					<img src="assets/img/logo.png" alt="logo">
+					<img src="${pageContext.request.contextPath}/resources/assets/img/logo.png" alt="logo">
 				</a>
 			</div>
 
@@ -68,7 +69,7 @@
 				<div class="container">
 					<nav class="navbar navbar-expand-lg navbar-light">
 						<a class="navbar-brand" href="index.html">
-							<img src="assets/img/logo.png" alt="logo">
+							<img src="${pageContext.request.contextPath}/resources/assets/img/logo.png" alt="logo">
 						</a>
 						<div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
 							<ul class="navbar-nav m-auto">
