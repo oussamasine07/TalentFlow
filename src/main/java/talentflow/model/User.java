@@ -1,39 +1,36 @@
-package talentflow.dto;
+package talentflow.model;
 
-import jakarta.validation.constraints.*;
+public abstract class User {
 
-@PasswordMatch
-public class RegisterDTO {
-
-    @NotBlank(message = "first name is required")
+    private int id;
     private String firstName;
-
-    @NotBlank(message = "last name is required")
     private String lastName;
-
-    @NotBlank(message = "email is reuqired")
-    @Email
     private String email;
-
-    @NotBlank(message = "please select a role")
     private String role;
-
-    @NotBlank(message = "password is required")
     private String password;
 
-    @NotBlank(message = "password confimation is required")
-    private String confirmPassword;
+    public User () {}
 
-
-    public RegisterDTO (String firstName, String lastName, String email, String role, String password, String confirmPassword) {
+    public User (int id, String firstName, String lastName, String email, String role, String password) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.role = role;
         this.password = password;
-        this.confirmPassword = confirmPassword;
     }
 
+    public User (String firstName, String lastName, String email, String role, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.role = role;
+        this.password = password;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -55,11 +52,11 @@ public class RegisterDTO {
         return password;
     }
 
-    public String getConfirmPassword() {
-        return confirmPassword;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setFirstName( String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
@@ -78,36 +75,4 @@ public class RegisterDTO {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

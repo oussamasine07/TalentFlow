@@ -11,6 +11,7 @@ public class PasswordMatchValidator implements ConstraintValidator<PasswordMatch
 
     @Override
     public boolean isValid(RegisterDTO registerDTO, ConstraintValidatorContext context) {
+        System.out.println(registerDTO.getPassword());
         if (registerDTO == null) {
             return true; // Ignore validation if the object is null
         }
