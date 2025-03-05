@@ -9,3 +9,5 @@ CREATE TABLE offers(
     offer_date DATETIME DEFAULT NOW(),
     foreign key(recruiter_id) references recruiters(id) ON DELETE CASCADE
 );
+
+SELECT * FROM recruiters WHERE user_id = 2;

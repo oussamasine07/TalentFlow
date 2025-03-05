@@ -6,7 +6,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import talentflow.dao.OfferDAO;
+import talentflow.dao.RecruiterDAO;
+import talentflow.model.Recruiter;
+import talentflow.model.User;
 
 import java.io.IOException;
 
@@ -14,7 +18,9 @@ import java.io.IOException;
 public class CreateOfferServlet extends HttpServlet {
 
     OfferDAO offerDAO = null;
+    RecruiterDAO recruiterDAO = null;
     public void init () {
+        recruiterDAO = new RecruiterDAO();
         offerDAO = new OfferDAO();
     }
 
@@ -30,8 +36,15 @@ public class CreateOfferServlet extends HttpServlet {
         String title = req.getParameter("title");
         String description = req.getParameter("description");
         String offer_date = req.getParameter("datetime");
+        HttpSession session = req.getSession();
+
+        // get authenticated user
+        User user = (User) session.getAttribute("user");
 
         // get recruiter
+        Recruiter recruiter = recruiterDAO.getRecruiterByUserId(user.getId());
+
+
 
 
     }

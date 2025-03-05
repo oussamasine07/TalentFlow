@@ -4,22 +4,28 @@ public class Offer {
     private int id;
     private String title;
     private String description;
-    private String offer_date;
+    private String offerDate;
     private Recruiter recruiter;
 
-    public Offer(String title, String description, String offer_date, Recruiter recruiter) {
+    public Offer(String title, String description, String offerDate, Recruiter recruiter) {
         this.title = title;
         this.description = description;
-        this.offer_date = offer_date;
+        this.offerDate = offerDate;
         this.recruiter = recruiter;
     }
 
-    public Offer(int id, String title, String description, String offer_date, Recruiter recruiter) {
+    public Offer(int id, String title, String description, String offerDate, Recruiter recruiter) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.offer_date = offer_date;
+        this.offerDate = offerDate;
         this.recruiter = recruiter;
+    }
+
+    public Offer(String title, String description, String offerDate) {
+        this.title = title;
+        this.description = description;
+        this.offerDate = offerDate;
     }
 
     public int getId() {
@@ -34,8 +40,8 @@ public class Offer {
         return description;
     }
 
-    public String getOffer_date() {
-        return offer_date;
+    public String getofferDate() {
+        return offerDate;
     }
 
     public Recruiter getRecruiter() {
@@ -46,8 +52,8 @@ public class Offer {
         this.recruiter = recruiter;
     }
 
-    public void setOffer_date(String offer_date) {
-        this.offer_date = offer_date;
+    public void setOfferDate(String offerDate) {
+        this.offerDate = offerDate;
     }
 
     public void setDescription(String description) {
