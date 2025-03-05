@@ -204,7 +204,7 @@
 
 							<div class="other-option">
 								<a href="${pageContext.request.contextPath}/auth/register" class="signup-btn">Sign Up</a>
-								<a href="sign-in.html" class="signin-btn">Sign In</a>
+								<a href="${pageContext.request.contextPath}/auth/login" class="signin-btn">Sign In</a>
 							</div>
 						</div>
 					</nav>

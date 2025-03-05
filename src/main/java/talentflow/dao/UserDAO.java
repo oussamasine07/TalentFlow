@@ -1,5 +1,6 @@
 package talentflow.dao;
 
+import talentflow.dto.LoginDTO;
 import talentflow.dto.RegisterDTO;
 import talentflow.model.Candidat;
 import talentflow.model.Recruiter;
@@ -94,6 +95,36 @@ public class UserDAO extends ConnectToDB {
 
         return user;
 
+    }
+
+    public User authenticateByEmail (String email) {
+        User user = null;
+
+        try (
+                Connection con = getConnection();
+                PreparedStatement stmt = con.prepareStatement(GET_USER_BY_EMAIL);
+        ){
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
+                String userEmail = rs.getString("email");
+                String role = rs.getString("role");
+                String password = rs.getString("password");
+
+                user = role.equals("recruteur") ?
+                        new Recruiter(id, firstName, lastName, userEmail, role, password) :
+                        new Candidat(id, firstName, lastName, userEmail, role, password);
+            }
+        }
+        catch ( SQLException e ){
+            e.printStackTrace();
+        }
+
+        return user;
     }
 
 }

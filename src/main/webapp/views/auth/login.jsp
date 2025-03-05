@@ -8,11 +8,12 @@
     session.removeAttribute("errors");
 
     // Get user input from session and remove it after displaying
-    talentflow.dto.RegisterDTO old = (talentflow.dto.RegisterDTO) session.getAttribute("old");
+    talentflow.dto.LoginDTO old = (talentflow.dto.LoginDTO) session.getAttribute("old");
     session.removeAttribute("old");
 
-    //String errorUser = (String) session.getAttribute("errorUser");
-    //session.removeAttribute("errorUser");
+    String errorUser = (String) session.getAttribute("errorUser");
+    System.out.println(errorUser);
+    session.removeAttribute("errorUser");
 %>
 
 
@@ -20,7 +21,7 @@
 <section class="page-title title-bg13">
     <div class="d-table">
         <div class="d-table-cell">
-            <h2>Sign Up</h2>
+            <h2>Sign In</h2>
             <ul>
                 <li>
                     <a href="index.html">Home</a>
@@ -39,6 +40,10 @@
 
 <!-- Sign up Section Start -->
 <div class="signup-section ptb-100">
+
+    <% if ( errorUser != null ) { %>
+        <p> <%= errorUser %> </p>
+    <% } %>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8  ">
@@ -47,7 +52,7 @@
                     <div class="form-group">
                          <label>Enter Email</label>
                          <input
-                            type="email"
+                            type="text"
                             class="form-control"
                             placeholder="Enter Your Email"
                             name="email"
