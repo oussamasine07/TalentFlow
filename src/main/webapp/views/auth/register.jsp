@@ -88,7 +88,7 @@
                     <div class="form-group">
                          <label>Enter Role</label>
                          <input
-                            type="email"
+                            type="text"
                             class="form-control"
                             placeholder="Enter Your Role"
                             name="role"

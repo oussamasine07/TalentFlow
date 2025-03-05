@@ -1,5 +1,9 @@
 package talentflow.controllers.auth;
 
+import com.password4j.BcryptFunction;
+import com.password4j.Hash;
+import com.password4j.Password;
+import com.password4j.types.Bcrypt;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,7 +13,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.*;
 import talentflow.dao.ConnectToDB;
+import talentflow.dao.UserDAO;
 import talentflow.dto.RegisterDTO;
+import talentflow.model.User;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -23,7 +29,10 @@ public class RegisterServlet extends HttpServlet {
     private final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
     private final Validator validator = factory.getValidator();
 
-    public void init () {}
+    private UserDAO userDAO = null;
+    public void init () {
+        userDAO = new UserDAO();
+    }
 
     protected void doGet (HttpServletRequest req, HttpServletResponse res)
         throws ServletException, IOException
@@ -39,6 +48,8 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost (HttpServletRequest req, HttpServletResponse res)
         throws ServletException, IOException
     {
+
+        User user = null;
 
         String firstName = req.getParameter("firstName");
         String lastName = req.getParameter("lastName");
@@ -65,8 +76,22 @@ public class RegisterServlet extends HttpServlet {
             res.sendRedirect(req.getContextPath() + "/auth/register");
 
         } else {
+            user = userDAO.getUserByEmail(registerDTO.getEmail());
+            if (user != null ) {
+                session.setAttribute("errorUser", "this email is already taken");
+                res.sendRedirect(req.getContextPath() + "/auth/register");
+            } else {
+                // hash password
+                BcryptFunction bcrypt = BcryptFunction.getInstance(Bcrypt.B, 12);
+                Hash hash = Password.hash(registerDTO.getPassword())
+                        .addPepper("somethignrealyhard")
+                        .with(bcrypt);
+                registerDTO.setPassword(hash.getResult());
+                userDAO.registerUser( registerDTO );
+                session.setAttribute("registerSuccess", "Register success, Please login");
+                res.sendRedirect(req.getContextPath() + "/auth/register");// todo add login route
+            }
 
-            res.sendRedirect(req.getContextPath() + "/auth/register"); // todo add login route
         }
 
     }

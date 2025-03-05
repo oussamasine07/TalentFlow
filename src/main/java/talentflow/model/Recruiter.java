@@ -9,6 +9,10 @@ public class Recruiter extends User {
     public Recruiter() {
     }
 
+    public Recruiter(String email) {
+        super(email);
+    }
+
     public Recruiter(int id, String firstName, String lastName, String email, String role, String password) {
         super(id, firstName, lastName, email, role, password);
     }

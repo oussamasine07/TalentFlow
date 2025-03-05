@@ -11,6 +11,10 @@ public abstract class User {
 
     public User () {}
 
+    public User (String email) {
+        this.email = email;
+    }
+
     public User (int id, String firstName, String lastName, String email, String role, String password) {
         this.id = id;
         this.firstName = firstName;
