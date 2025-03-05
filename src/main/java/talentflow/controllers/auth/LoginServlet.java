@@ -78,14 +78,8 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("errorUser", "Invalid Credential");
                     res.sendRedirect(req.getContextPath() + "/auth/login");
                 } else {
-                    Map<String, String> authUser = new HashMap<>();
 
-                    authUser.put("firstName", user.getFirstName());
-                    authUser.put("lastName", user.getLastName());
-                    authUser.put("email", user.getEmail());
-                    authUser.put("role", user.getRole());
-
-                    session.setAttribute("user", authUser);
+                    session.setAttribute("user", user);
 
                     res.sendRedirect(req.getContextPath() + "/dashboard");
 

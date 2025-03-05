@@ -2,9 +2,9 @@
 <%@ page import="talentflow.model.User, java.util.*" %>
 
 <%
-    Map<String, String> user = (Map<String, String>) session.getAttribute("user");
+    User user = (User) session.getAttribute("user");
 %>
 
-<h1> hello <%= user.get("firstName") %> </h1>
+<h1> hello <%= user.getFirstName() %> </h1>
 
 <jsp:include page="/views/parcials/footer.jsp" />
