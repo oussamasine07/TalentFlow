@@ -18,6 +18,8 @@ public class OfferDAO extends ConnectToDB {
             "     offer_date = ?\n" +
             "WHERE id = ?;";
 
+    private static final String DELETE_OFFER_BY_ID = "DELETE FROM offers WHERE id = ?";
+
     public OfferDAO (){}
 
     RecruiterDAO recruiterDAO = new RecruiterDAO();
@@ -104,6 +106,18 @@ public class OfferDAO extends ConnectToDB {
         }
     }
 
+    public void deleteOffer( int offerId ) {
+        try (
+                Connection con = getConnection();
+                PreparedStatement stmt = con.prepareStatement(DELETE_OFFER_BY_ID);
+        ){
+            stmt.setInt(1, offerId);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
 
