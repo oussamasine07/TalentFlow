@@ -1,4 +1,9 @@
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ page import="talentflow.model.User, java.util.*" %>
+
+<%
+    User user = (User) session.getAttribute("user");
+%>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -203,8 +208,15 @@
 							</ul>
 
 							<div class="other-option">
-								<a href="${pageContext.request.contextPath}/auth/register" class="signup-btn">Sign Up</a>
-								<a href="${pageContext.request.contextPath}/auth/login" class="signin-btn">Sign In</a>
+							    <% if ( user != null ) { %>
+							        <form action="${pageContext.request.contextPath}/auth/logout" method="POST">
+							            <input type="submit" class="signin-btn" value="Logout" />
+							        </form>
+							    <% } else { %>
+							        <a href="${pageContext.request.contextPath}/auth/register" class="signup-btn">Sign Up</a>
+                                    <a href="${pageContext.request.contextPath}/auth/login" class="signin-btn">Sign In</a>
+							    <% } %>
+
 							</div>
 						</div>
 					</nav>
