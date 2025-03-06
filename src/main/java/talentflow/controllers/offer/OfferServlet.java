@@ -36,7 +36,6 @@ public class OfferServlet extends HttpServlet {
         Recruiter recruiter = recruiterDAO.getRecruiterByUserId(user.getId());
 
         List<Offer> offers = offerDAO.getListOfRecruiterOffers(recruiter.getRecruiterId());
-        offers.forEach(offer -> System.out.println(offer.getTitle()));
         req.setAttribute("offers", offers);
         RequestDispatcher rs = req.getRequestDispatcher("/views/offer/index.jsp");
         rs.forward(req, res);

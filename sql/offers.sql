@@ -11,3 +11,10 @@ CREATE TABLE offers(
 );
 
 SELECT * FROM recruiters WHERE user_id = 2;
+
+UPDATE offers
+SET
+    title = ?,
+     description = ?,
+     offer_date = ?
+WHERE id = ?;
