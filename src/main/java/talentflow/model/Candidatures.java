@@ -2,23 +2,26 @@ package talentflow.model;
 
 public class Candidatures {
     private int id;
-    private String titre;
-    private String candidatId;
-    private String offreId;
-    private String datePostulation;
+    private Candidat candidat;
+    private Offer offre;
     private String status;
-    private String commentaire;
+    private boolean isCanceled;
 
     public Candidatures() {}
 
-    public Candidatures(int id, String titre, String candidatId, String offreId, String datePostulation, String status, String commentaire) {
+    public Candidatures(int id, Candidat candidat, Offer offre, String status, boolean isCanceled) {
         this.id = id;
-        this.titre = titre;
-        this.candidatId = candidatId;
-        this.offreId = offreId;
-        this.datePostulation = datePostulation;
+        this.candidat = candidat;
+        this.offre = offre;
         this.status = status;
-        this.commentaire = commentaire;
+        this.isCanceled = isCanceled;
+    }
+
+    public Candidatures(Candidat candidat, Offer offre, String status, boolean isCanceled) {
+        this.candidat = candidat;
+        this.offre = offre;
+        this.status = status;
+        this.isCanceled = isCanceled;
     }
 
     public int getId() {
@@ -29,36 +32,20 @@ public class Candidatures {
         this.id = id;
     }
 
-    public String getTitre() {
-        return titre;
+    public Candidat getCandidat() {
+        return candidat;
     }
 
-    public void setTitre(String titre) {
-        this.titre = titre;
+    public void setCandidat(Candidat candidat) {
+        this.candidat = candidat;
     }
 
-    public String getCandidatId() {
-        return candidatId;
+    public Offer getOffre() {
+        return offre;
     }
 
-    public void setCandidatId(String candidatId) {
-        this.candidatId = candidatId;
-    }
-
-    public String getOffreId() {
-        return offreId;
-    }
-
-    public void setOffreId(String offreId) {
-        this.offreId = offreId;
-    }
-
-    public String getDatePostulation() {
-        return datePostulation;
-    }
-
-    public void setDatePostulation(String datePostulation) {
-        this.datePostulation = datePostulation;
+    public void setOffre(Offer offre) {
+        this.offre = offre;
     }
 
     public String getStatus() {
@@ -69,11 +56,11 @@ public class Candidatures {
         this.status = status;
     }
 
-    public String getCommentaire() {
-        return commentaire;
+    public boolean getIsCanceled() {
+        return isCanceled;
     }
 
-    public void setCommentaire(String commentaire) {
-        this.commentaire = commentaire;
+    public void setIsCanceled(boolean canceled) {
+        isCanceled = canceled;
     }
 }
