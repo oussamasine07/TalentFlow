@@ -7,7 +7,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import talentflow.model.Candidat;
+import talentflow.model.User;
 
+import java.awt.datatransfer.DataFlavor;
 import java.io.IOException;
 
 @WebServlet ("/edit-profil")
@@ -23,4 +25,12 @@ public class EditProfilServlet extends HttpServlet {
             return;
 
         }
+// Get input from user
+    private DataFlavor request;
+    String diploma = request.getParameter("diploma");
+    String phone = request.getParameter("phone");
+
+
+
+
 }
