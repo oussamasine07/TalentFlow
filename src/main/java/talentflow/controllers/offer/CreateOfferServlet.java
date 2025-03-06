@@ -15,7 +15,7 @@ import talentflow.model.User;
 
 import java.io.IOException;
 
-@WebServlet("/recruiter/offer/create")
+@WebServlet("/offer/create")
 public class CreateOfferServlet extends HttpServlet {
 
     OfferDAO offerDAO = null;
@@ -47,6 +47,6 @@ public class CreateOfferServlet extends HttpServlet {
         Offer offer = new Offer(title, description, offerDate);
 
         offerDAO.addOffer(offer, recruiter);
-        res.sendRedirect(req.getContextPath() + "/recruiter/offer/create");
+        res.sendRedirect(req.getContextPath() + "/offer/my-offers");
     }
 }
