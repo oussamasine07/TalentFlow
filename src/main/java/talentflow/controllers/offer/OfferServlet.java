@@ -14,9 +14,10 @@ import talentflow.model.Recruiter;
 import talentflow.model.User;
 
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet("/offer/create")
-public class CreateOfferServlet extends HttpServlet {
+@WebServlet("/offer")
+public class OfferServlet extends HttpServlet {
 
     OfferDAO offerDAO = null;
     RecruiterDAO recruiterDAO = null;
@@ -28,25 +29,17 @@ public class CreateOfferServlet extends HttpServlet {
     protected void doGet (HttpServletRequest req, HttpServletResponse res)
         throws ServletException, IOException
     {
-        RequestDispatcher rs = req.getRequestDispatcher("/views/offer/create.jsp"); // todo create views folder
-        rs.forward(req, res);
-    }
-    protected void doPost(HttpServletRequest req, HttpServletResponse res)
-        throws ServletException, IOException
-    {
-        String title = req.getParameter("title");
-        String description = req.getParameter("description");
-        String offerDate = req.getParameter("datetime");
         HttpSession session = req.getSession();
-
         // get authenticated user
         User user = (User) session.getAttribute("user");
-
         // get recruiter
         Recruiter recruiter = recruiterDAO.getRecruiterByUserId(user.getId());
-        Offer offer = new Offer(title, description, offerDate);
 
-        offerDAO.addOffer(offer, recruiter);
-        res.sendRedirect(req.getContextPath() + "/offer/create");
+        List<Offer> offers = offerDAO.getListOfRecruiterOffers(recruiter.getRecruiterId());
+        offers.forEach(offer -> System.out.println(offer.getTitle()));
+        req.setAttribute("offers", offers);
+        RequestDispatcher rs = req.getRequestDispatcher("/views/offer/index.jsp");
+        rs.forward(req, res);
     }
+
 }

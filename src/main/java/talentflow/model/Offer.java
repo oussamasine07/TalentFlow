@@ -22,6 +22,13 @@ public class Offer {
         this.recruiter = recruiter;
     }
 
+    public Offer(int id, String title, String description, String offerDate) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.offerDate = offerDate;
+    }
+
     public Offer(String title, String description, String offerDate) {
         this.title = title;
         this.description = description;
