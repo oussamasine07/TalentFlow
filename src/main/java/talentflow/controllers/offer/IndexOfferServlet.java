@@ -16,29 +16,20 @@ import talentflow.model.User;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/offer/my-offers")
-public class OfferServlet extends HttpServlet {
-
+@WebServlet("/offer")
+public class IndexOfferServlet extends HttpServlet {
     OfferDAO offerDAO = null;
-    RecruiterDAO recruiterDAO = null;
     public void init () {
-        recruiterDAO = new RecruiterDAO();
         offerDAO = new OfferDAO();
     }
 
     protected void doGet (HttpServletRequest req, HttpServletResponse res)
-        throws ServletException, IOException
+            throws ServletException, IOException
     {
-        HttpSession session = req.getSession();
-        // get authenticated user
-        User user = (User) session.getAttribute("user");
-        // get recruiter
-        Recruiter recruiter = recruiterDAO.getRecruiterByUserId(user.getId());
 
-        List<Offer> offers = offerDAO.getListOfRecruiterOffers(recruiter.getRecruiterId());
+        List<Offer> offers = offerDAO.getListOfOffers();
         req.setAttribute("offers", offers);
-        RequestDispatcher rs = req.getRequestDispatcher("/views/offer/recruiter-offer.jsp");
+        RequestDispatcher rs = req.getRequestDispatcher("/views/offer/index.jsp");
         rs.forward(req, res);
     }
-
 }
