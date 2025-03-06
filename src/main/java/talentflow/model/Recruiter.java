@@ -21,6 +21,13 @@ public class Recruiter extends User {
         super(firstName, lastName, email, role, password);
     }
 
+    public Recruiter (int recruiterId, String company, String phone, String address) {
+        this.recruiterId = recruiterId;
+        this.company = company;
+        this.phone = phone;
+        this.address = address;
+    }
+
 
     public int getRecruiterId() {
         return recruiterId;
