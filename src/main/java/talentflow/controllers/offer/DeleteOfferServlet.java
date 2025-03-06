@@ -14,7 +14,7 @@ import talentflow.model.User;
 
 import java.io.IOException;
 
-@WebServlet("/recruiter/offer/delete")
+@WebServlet("/offer/delete")
 public class DeleteOfferServlet extends HttpServlet {
     OfferDAO offerDAO = null;
     RecruiterDAO recruiterDAO = null;
@@ -39,11 +39,11 @@ public class DeleteOfferServlet extends HttpServlet {
 
         if (recruiter.getRecruiterId() != offer.getRecruiter().getRecruiterId()) {
             System.out.println("unauthorized action");
-            res.sendRedirect(req.getContextPath() + "/recruiter/offer/update?id=" + offer.getId());
+            res.sendRedirect(req.getContextPath() + "/offer/update?id=" + offer.getId());
         } else {
             // update
             offerDAO.deleteOffer( id );
-            res.sendRedirect(req.getContextPath() + "/recruiter/offer");
+            res.sendRedirect(req.getContextPath() + "/offer/my-offers");
         }
     }
 }

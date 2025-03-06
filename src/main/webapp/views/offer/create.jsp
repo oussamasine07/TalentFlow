@@ -32,7 +32,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8  ">
-                <form class="offer-form" action="${pageContext.request.contextPath}/recruiter/offer/create" method="POST">
+                <form class="offer-form" action="${pageContext.request.contextPath}/offer/create" method="POST">
 
                     <div class="form-group">
                          <label>Enter Title</label>
