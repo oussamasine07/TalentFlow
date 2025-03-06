@@ -16,7 +16,7 @@ import talentflow.model.User;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/offer")
+@WebServlet("/recruiter/offer")
 public class OfferServlet extends HttpServlet {
 
     OfferDAO offerDAO = null;
