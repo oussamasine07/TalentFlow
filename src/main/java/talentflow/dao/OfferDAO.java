@@ -29,17 +29,17 @@ public class OfferDAO extends ConnectToDB {
                 throw new RuntimeException(e);
             }
         }
-        public List <Offer> selectAllOffer(){
-         List<Offer> offers = new ArrayList<>();
-         try(
-                 Connection con = getConnection();
-                 PreparedStatement stmt = con.prepareStatement(SELECT_ALL_OFFERS);
-                 ){
-             ResultSet rs = PreparedStatement.executeQuery();
+        public List <Offer> selectAllOffer() {
+            List<Offer> offers = new ArrayList<>();
+            try (
+                    Connection con = getConnection();
+                    PreparedStatement stmt = con.prepareStatement(SELECT_ALL_OFFERS);
+            ) {
+                ResultSet rs = PreparedStatement.executeQuery();
 
-         }
+            }
+            return offers;
         }
-        return List<Offer>;
     }
 
 
