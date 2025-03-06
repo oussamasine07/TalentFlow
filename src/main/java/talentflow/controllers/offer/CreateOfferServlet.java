@@ -43,9 +43,5 @@ public class CreateOfferServlet extends HttpServlet {
 
         // get recruiter
         Recruiter recruiter = recruiterDAO.getRecruiterByUserId(user.getId());
-
-
-
-
     }
 }
