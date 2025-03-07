@@ -30,7 +30,7 @@ public class IsAuthenticated implements Filter {
         httpReq = (HttpServletRequest) req;
         httpRes = (HttpServletResponse) res;
 
-        HttpSession session = httpReq.getSession();
+        HttpSession session = httpReq.getSession(false);
         boolean isLoggedInUser = (session != null && session.getAttribute("user") != null);
 
         String loginURI = httpReq.getContextPath() + "/auth/login";
