@@ -13,3 +13,6 @@ INSERT INTO candidatures
     (candidat_id, offre_id)
 VALUES
     (?, ?);
+
+SELECT * FROM candidatures
+WHERE candidat_id = ? AND offre_id = ?;

@@ -4,6 +4,7 @@ import talentflow.model.Candidature;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CandidatureDAO extends ConnectToDB {
@@ -12,6 +13,9 @@ public class CandidatureDAO extends ConnectToDB {
             "    (candidat_id, offre_id)\n" +
             "VALUES \n" +
             "    (?, ?);";
+
+    private static final String CHECK_IF_ALREADY_EXISTS  = "SELECT * FROM candidatures\n" +
+            "WHERE candidat_id = ? AND offre_id = ?;";
 
     public CandidatureDAO(){}
 
@@ -28,6 +32,25 @@ public class CandidatureDAO extends ConnectToDB {
         catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Candidature getCandidatureIfAlreadyexists (Candidature candidature) {
+        Candidature foundCandidature = null;
+        try (
+                Connection conn = getConnection();
+                PreparedStatement ps = conn.prepareStatement(CHECK_IF_ALREADY_EXISTS);
+        ){
+            ps.setInt(1, candidature.getCandidat().getCandidatId());
+            ps.setInt(2, candidature.getOffre().getId());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                foundCandidature = new Candidature( rs.getInt("id"));
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return foundCandidature;
     }
 
 }

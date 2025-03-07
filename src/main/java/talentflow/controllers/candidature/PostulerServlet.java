@@ -14,6 +14,8 @@ import talentflow.model.Offer;
 import talentflow.model.User;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet("/candidature/postuler")
 public class PostulerServlet extends HttpServlet {
@@ -33,20 +35,41 @@ public class PostulerServlet extends HttpServlet {
         // get authenticated user
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        // get candidate
-        Candidat candidat = candidatDAO.getCandidatByUserId(user.getId());
-        System.out.println(candidat.getCandidatId());
-        // get offer
-        int offerId = Integer.parseInt(request.getParameter("offerId"));
-        Offer offer = offerDAO.getOfferById(offerId);
 
-        Candidature candidature = new Candidature(candidat, offer);
+        Map<String, String> message = new HashMap<String, String>();
 
-        candidatureDAO.postuler(candidature);
+        if ( !user.getRole().equals("condidat")) {
+            message.put("type", "error");
+            message.put("message", "Unauthorized action");
+            session.setAttribute("message", message);
+            System.out.println("Unauthorized action");
+            response.sendRedirect(request.getContextPath() + "/offer");
+        } else {
+            // get candidate
+            Candidat candidat = candidatDAO.getCandidatByUserId(user.getId());
+            System.out.println(candidat.getCandidatId());
+            // get offer
+            int offerId = Integer.parseInt(request.getParameter("offerId"));
+            Offer offer = offerDAO.getOfferById(offerId);
 
-        session.setAttribute("success", "postulation success");
-        // redirect
-        response.sendRedirect(request.getContextPath() + "/offer");
+            Candidature candidature = new Candidature(candidat, offer);
+            Candidature foundCandidature = candidatureDAO.getCandidatureIfAlreadyexists(candidature);
+
+            if (foundCandidature != null ) {
+                message.put("type", "error");
+                message.put("message", "you already posted for this offer");
+                session.setAttribute("message", message);
+                System.out.println("Unauthorized action");
+                response.sendRedirect(request.getContextPath() + "/offer");
+            } else {
+                candidatureDAO.postuler(candidature);
+                System.out.println("postulation success");
+                message.put("type", "success");
+                message.put("message", "postulation success");
+                session.setAttribute("message", message);
+                response.sendRedirect(request.getContextPath() + "/offer");
+            }
+        }
     }
 
     protected void doGet (HttpServletRequest request, HttpServlet response )

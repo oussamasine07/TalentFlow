@@ -8,6 +8,9 @@ public class Candidature {
     private boolean isCanceled;
 
     public Candidature() {}
+    public Candidature(int id) {
+        this.id = id;
+    }
 
     public Candidature(Candidat candidat, Offer offer) {
         this.candidat = candidat;

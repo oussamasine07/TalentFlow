@@ -3,6 +3,10 @@
 
 <%@ page import="java.util.Map" %>
 
+<%
+    // todo show alert message
+%>
+
 <h1>hello world</h1>
     <c:forEach var="offer" items="${offers}" >
             <div>
