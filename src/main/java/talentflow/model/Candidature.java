@@ -19,6 +19,13 @@ public class Candidature {
         this.isCanceled = isCanceled;
     }
 
+    public Candidature(int id, String status, boolean isCanceled, Candidat candidat) {
+        this.id = id;
+        this.status = status;
+        this.isCanceled = isCanceled;
+        this.candidat = candidat;
+    }
+
     public Candidature(Candidat candidat, Offer offer) {
         this.candidat = candidat;
         this.offre = offer;

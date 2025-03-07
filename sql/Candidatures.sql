@@ -30,3 +30,41 @@ INNER JOIN offers
          on offers.id = candidatures.offre_id
 WHERE candidates.user_id = ?;
 
+SELECT
+    candidatures.id,
+    candidatures.status,
+    candidatures.is_canceled,
+    candidates.user_id
+FROM candidatures
+inner join candidates
+         on candidates.id = candidatures.candidat_id
+WHERE candidatures.id = ? AND candidates.user_id = ?;
+
+DELETE FROM candidatures WHERE id = ?;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

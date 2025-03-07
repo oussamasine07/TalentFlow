@@ -23,11 +23,11 @@
                     canceled
                 </c:otherwise>
             </c:choose>
-            <%--<c:out value="${candidature.isCanceled}" />--%>
+            <%----%>
         </p>
 
 
-        <form action="#" method="POST">
+        <form action='${pageContext.request.contextPath}/candidature/delete?id=<c:out value="${candidature.id}" />' method="POST">
             <button type="submit">Retirer</button>
         </form>
     </div>

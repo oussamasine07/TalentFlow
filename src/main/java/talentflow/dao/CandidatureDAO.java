@@ -1,5 +1,6 @@
 package talentflow.dao;
 
+import talentflow.model.Candidat;
 import talentflow.model.Candidature;
 import talentflow.model.Offer;
 
@@ -32,6 +33,18 @@ public class CandidatureDAO extends ConnectToDB {
             "INNER JOIN offers\n" +
             "         on offers.id = candidatures.offre_id\n" +
             "WHERE candidates.user_id = ?;";
+
+    private static final String GET_CANDIDATURE_BY_ID = "SELECT\n" +
+            "    candidatures.id,\n" +
+            "    candidatures.status,\n" +
+            "    candidatures.is_canceled,\n" +
+            "    candidates.user_id\n" +
+            "FROM candidatures\n" +
+            "inner join candidates\n" +
+            "         on candidates.id = candidatures.candidat_id\n" +
+            "WHERE candidatures.id = ? AND candidates.user_id = ?;";
+
+    private static final String DELETE_CANDIDATURE_BY_ID = "DELETE FROM candidatures WHERE id = ?;";
 
     public CandidatureDAO(){}
 
@@ -99,4 +112,67 @@ public class CandidatureDAO extends ConnectToDB {
         return candidatures;
     }
 
+    public Candidature getCandidatureById ( int candidtatureId, int userId ) {
+        Candidature foundCandidature = null;
+        try (
+                Connection conn = getConnection();
+                PreparedStatement ps = conn.prepareStatement(GET_CANDIDATURE_BY_ID);
+        ){
+            ps.setInt(1, candidtatureId);
+            ps.setInt(2, userId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String status = rs.getString("status");
+                boolean isCanceled = rs.getBoolean("is_canceled");
+                int candidateId = rs.getInt("user_id");
+                Candidat candidate = new Candidat( candidateId );
+
+                foundCandidature = new Candidature( id, status, isCanceled, candidate );
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return foundCandidature;
+    }
+
+    public void deleteCandidatureById ( int candidatureId ) {
+        try (
+            Connection con = getConnection();
+            PreparedStatement stmt = con.prepareStatement(DELETE_CANDIDATURE_BY_ID);
+        ){
+            stmt.setInt( 1, candidatureId );
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
