@@ -15,8 +15,12 @@ public class IsAuthenticated implements Filter {
     private HttpServletResponse httpRes;
 
     private final String[] protectedURIs = {
-         "/dashboard",
-         "/profile",
+            "/dashboard",
+            "/profile",
+            "/offer/my-offers",
+            "/offer/create",
+            "/offer/update",
+            "/offer/delete"
     };
 
     @Override
@@ -26,7 +30,7 @@ public class IsAuthenticated implements Filter {
         httpReq = (HttpServletRequest) req;
         httpRes = (HttpServletResponse) res;
 
-        HttpSession session = httpReq.getSession(false);
+        HttpSession session = httpReq.getSession();
         boolean isLoggedInUser = (session != null && session.getAttribute("user") != null);
 
         String loginURI = httpReq.getContextPath() + "/auth/login";
