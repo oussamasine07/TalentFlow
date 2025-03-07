@@ -5,23 +5,31 @@
 <h1>hello world</h1>
 <c:forEach var="candidature" items="${candidatures}" >
     <div>
-<%--        <h1>--%>
-<%--            <c:out value="${candidature.offer.title}" />--%>
-<%--        </h1>--%>
-<%--        <p>--%>
-<%--            <c:out value="${candidature.offer.offerDate}" />--%>
-<%--        </p>--%>
+        <h1>
+            <c:out value="${candidature.offre.title}" />
+        </h1>
+        <p>
+            <c:out value="${candidature.offre.offerDate}" />
+        </p>
         <p>
             <c:out value="${candidature.status}" />
         </p>
         <p>
-            <c:out value="${candidature.isCanceled}" />
+            <c:choose>
+                <c:when test="${not candidature.isCanceled}">
+                    still active
+                </c:when>
+                <c:otherwise>
+                    canceled
+                </c:otherwise>
+            </c:choose>
+            <%--<c:out value="${candidature.isCanceled}" />--%>
         </p>
 
 
-<%--        <form action="${pageContext.request.contextPath}/candidature/postuler?offerId=${offer.id}" method="POST">--%>
-<%--            <button type="submit">Postuler</button>--%>
-<%--        </form>--%>
+        <form action="#" method="POST">
+            <button type="submit">Retirer</button>
+        </form>
     </div>
 </c:forEach>
 
