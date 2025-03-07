@@ -26,6 +26,11 @@ public class Candidat extends User {
         this.cv = cv;
     }
 
+    public Candidat(String phone, String diploma) {
+        this.diploma = diploma;
+        this.phone = phone;
+    }
+
     public Candidat(int id, String firstName, String lastName, String email, String role, String password, int candidatId, String diploma, String phone, String cv) {
         super(id, firstName, lastName, email, role, password);
         this.candidatId = candidatId;
