@@ -3,6 +3,10 @@
 
 <%@ page import="java.util.Map" %>
 
+<%
+    // todo show alert message
+%>
+
 <h1>hello world</h1>
     <c:forEach var="offer" items="${offers}" >
             <div>
@@ -16,7 +20,7 @@
                     <c:out value="${offer.offerDate}" />
                 </p>
 
-                <form action="#" method="POST">
+                <form action="${pageContext.request.contextPath}/candidature/postuler?offerId=${offer.id}" method="POST">
                     <button type="submit">Postuler</button>
                 </form>
             </div>

@@ -7,6 +7,11 @@ public class Offer {
     private String offerDate;
     private Recruiter recruiter;
 
+    public Offer(String title, String offerDate) {
+        this.title = title;
+        this.offerDate = offerDate;
+    }
+
     public Offer(String title, String description, String offerDate, Recruiter recruiter) {
         this.title = title;
         this.description = description;
