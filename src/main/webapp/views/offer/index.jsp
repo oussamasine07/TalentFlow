@@ -16,7 +16,7 @@
                     <c:out value="${offer.offerDate}" />
                 </p>
 
-                <form action="#" method="POST">
+                <form action="${pageContext.request.contextPath}/candidature/postuler?offerId=${offer.id}" method="POST">
                     <button type="submit">Postuler</button>
                 </form>
             </div>

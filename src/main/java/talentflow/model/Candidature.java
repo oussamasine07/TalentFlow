@@ -1,15 +1,20 @@
 package talentflow.model;
 
-public class Candidatures {
+public class Candidature {
     private int id;
     private Candidat candidat;
     private Offer offre;
     private String status;
     private boolean isCanceled;
 
-    public Candidatures() {}
+    public Candidature() {}
 
-    public Candidatures(int id, Candidat candidat, Offer offre, String status, boolean isCanceled) {
+    public Candidature(Candidat candidat, Offer offer) {
+        this.candidat = candidat;
+        this.offre = offer;
+    }
+
+    public Candidature(int id, Candidat candidat, Offer offre, String status, boolean isCanceled) {
         this.id = id;
         this.candidat = candidat;
         this.offre = offre;
@@ -17,7 +22,7 @@ public class Candidatures {
         this.isCanceled = isCanceled;
     }
 
-    public Candidatures(Candidat candidat, Offer offre, String status, boolean isCanceled) {
+    public Candidature(Candidat candidat, Offer offre, String status, boolean isCanceled) {
         this.candidat = candidat;
         this.offre = offre;
         this.status = status;
