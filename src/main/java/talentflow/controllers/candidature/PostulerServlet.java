@@ -72,10 +72,6 @@ public class PostulerServlet extends HttpServlet {
         }
     }
 
-    protected void doGet (HttpServletRequest request, HttpServlet response )
-            throws ServletException, IOException
-    {
 
-    }
 }
 

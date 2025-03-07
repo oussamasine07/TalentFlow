@@ -16,3 +16,17 @@ VALUES
 
 SELECT * FROM candidatures
 WHERE candidat_id = ? AND offre_id = ?;
+
+SELECT
+    offers.title,
+    offers.offer_date,
+    candidatures.id,
+    candidatures.status,
+    candidatures.is_canceled
+FROM candidatures
+inner join candidates
+         on candidates.id = candidatures.candidat_id
+INNER JOIN offers
+         on offers.id = candidatures.offre_id
+WHERE candidates.user_id = ?;
+

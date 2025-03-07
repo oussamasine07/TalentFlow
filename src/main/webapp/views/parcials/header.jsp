@@ -104,7 +104,7 @@
                                         <a href="#" class="nav-link dropdown-toggle">Candidat</a>
                                         <ul class="dropdown-menu">
                                             <li class="nav-item">
-                                                <a href="${pageContext.request.contextPath}/offer/my-offers" class="nav-link">Mes Candidatures</a>
+                                                <a href="${pageContext.request.contextPath}/candidature/mes-candidatures" class="nav-link">Mes Candidatures</a>
                                             </li>
                                         </ul>
                                     </li>
