@@ -15,8 +15,12 @@ public class IsAuthenticated implements Filter {
     private HttpServletResponse httpRes;
 
     private final String[] protectedURIs = {
-         "/dashboard",
-         "/profile",
+            "/dashboard",
+            "/profile",
+            "/offer/my-offers",
+            "/offer/create",
+            "/offer/update",
+            "/offer/delete"
     };
 
     @Override
