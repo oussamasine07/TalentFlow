@@ -20,7 +20,10 @@ public class IsAuthenticated implements Filter {
             "/offer/my-offers",
             "/offer/create",
             "/offer/update",
-            "/offer/delete"
+            "/offer/delete",
+            "/candidature/postuler",
+            "/candidature/delete",
+            "/candidature/mes-candidatures"
     };
 
     @Override
