@@ -36,7 +36,6 @@ public class CandidatCandidatureServlet extends HttpServlet {
         Candidat candidat = candidatDAO.getCandidatByUserId(user.getId());
         List<Candidature> candidatures = candidatureDAO.getCandidatesByUserId(user.getId());
         req.setAttribute("candidatures", candidatures);
-        System.out.println(candidatures.get(0));
 
         RequestDispatcher rd = req.getRequestDispatcher("/views/candidature/mes-candidatures.jsp");
         rd.forward(req, res);

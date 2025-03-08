@@ -11,6 +11,10 @@ public class Candidat extends User {
         super(email);
     }
 
+    public Candidat(int candidatId) {
+        this.candidatId = candidatId;
+    }
+
     public Candidat(int id, String firstName, String lastName, String email, String role, String password) {
         super(id, firstName, lastName, email, role, password);
     }
