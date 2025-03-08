@@ -7,7 +7,10 @@
     <c:forEach var="offer" items="${offers}" >
             <div>
                 <h1>
-                    <c:out value="${offer.title}" />
+                    <a href="${pageContext.request.contextPath}/offer/mes-offer/candidatures?id=<c:out value='${offer.id}' />">
+                     <c:out value="${offer.title}" />
+                    </a>
+
                 </h1>
                 <p>
                     <c:out value="${offer.description}" />

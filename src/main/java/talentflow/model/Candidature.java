@@ -12,6 +12,11 @@ public class Candidature {
         this.id = id;
     }
 
+    public Candidature(Candidat candidat, String status) {
+        this.candidat = candidat;
+        this.status = status;
+    }
+
     public Candidature(int id, String status, boolean isCanceled, Offer offre) {
         this.id = id;
         this.offre = offre;

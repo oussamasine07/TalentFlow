@@ -11,6 +11,13 @@ public class Candidat extends User {
         super(email);
     }
 
+    public Candidat(String firstName, String lastName, String email, String diploma, String phone, String cv){
+        super(firstName,lastName,email);
+        this.diploma = diploma;
+        this.phone = phone;
+        this.cv = cv;
+    }
+
     public Candidat(int candidatId) {
         this.candidatId = candidatId;
     }
@@ -50,6 +57,8 @@ public class Candidat extends User {
         this.phone = phone;
         this.cv = cv;
     }
+
+
 
     public int getCandidatId() {
         return candidatId;
