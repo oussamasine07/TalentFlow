@@ -32,9 +32,6 @@ public class OffreCandidatureServlet  extends HttpServlet {
 
         List<Candidature> candidatures = candidatureDAO.getCandidatureByOfferId(offreId);
 
-        candidatures.forEach(can -> {
-            System.out.println(can.getCandidat().getFirstName());
-        });
 
         req.setAttribute("candidatures", candidatures);
 

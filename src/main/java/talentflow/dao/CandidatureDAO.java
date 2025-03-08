@@ -53,6 +53,7 @@ public class CandidatureDAO extends ConnectToDB {
             "    candidates.phone,\n" +
             "    candidates.diplome,\n" +
             "    candidates.cv,\n" +
+            "    candidatures.id,\n" +
             "    candidatures.status\n" +
             "from users\n" +
             "inner join candidates\n" +
@@ -62,6 +63,9 @@ public class CandidatureDAO extends ConnectToDB {
             "inner join offers\n" +
             "    on offers.id = candidatures.offre_id\n" +
             "where offers.id = ?;";
+    private static final String UPDATE_CANDIDATURE_STATUS_BY_ID ="update candidatures\n" +
+            "set status = ?\n" +
+            "where id = ? ;";
 
     public CandidatureDAO(){}
 
@@ -179,6 +183,7 @@ public class CandidatureDAO extends ConnectToDB {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()){
+                int id = rs.getInt("id");
                 String firstName = rs.getString("firstName");
                 String lastName = rs.getString("lastName");
                 String email = rs.getString("email");
@@ -188,7 +193,7 @@ public class CandidatureDAO extends ConnectToDB {
                 String status = rs.getString("status");
 
                 Candidat candidate = new Candidat(firstName,lastName,email,diplome,phone, cv);
-                Candidature candidature = new Candidature(candidate, status);
+                Candidature candidature = new Candidature(id, candidate, status);
 
                 candidatures.add(candidature);
             }
@@ -199,6 +204,24 @@ public class CandidatureDAO extends ConnectToDB {
         }
 
         return candidatures;
+    }
+
+    public void updatCandidatureStatusById (int candidatureId, String status ){
+
+        try (
+                Connection con = getConnection();
+                PreparedStatement stmt = con.prepareStatement(UPDATE_CANDIDATURE_STATUS_BY_ID);
+
+                ){
+            stmt.setString(1,status );
+            stmt.setInt(2,candidatureId);
+            stmt.executeUpdate();
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+
     }
 
 }

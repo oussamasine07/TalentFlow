@@ -1,3 +1,5 @@
+
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:include page="/views/parcials/header.jsp" />
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <%@ page import="java.util.Map" %>
@@ -35,7 +37,13 @@
         </p>
 
 
-        <form action='${pageContext.request.contextPath}/candidature/delete?id=<c:out value="${candidature.id}" />' method="POST">
+        <form action="${pageContext.request.contextPath}/candidature/update-status?id=<c:out value='${candidature.id}' />" method="POST">
+            <input type="hidden" name="id" value="<c:out value='${candidature.id}' />">
+            <select name="status">
+                <option value="acceptée">Acceptée</option>
+                <option value="refusée">Refusée</option>
+                <option value="en attente">En attente</option>
+            </select>
             <button type="submit">change</button>
         </form>
     </div>

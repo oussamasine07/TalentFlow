@@ -15,3 +15,7 @@ inner join offers
     on offers.id = candidatures.offre_id
 where offers.id = ?;
 
+update candidatures
+set status = ?
+where id = ? ;
+

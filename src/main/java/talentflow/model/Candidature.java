@@ -12,7 +12,8 @@ public class Candidature {
         this.id = id;
     }
 
-    public Candidature(Candidat candidat, String status) {
+    public Candidature( int id, Candidat candidat, String status) {
+        this.id = id;
         this.candidat = candidat;
         this.status = status;
     }

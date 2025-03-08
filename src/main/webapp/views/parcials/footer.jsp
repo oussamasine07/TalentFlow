@@ -163,6 +163,7 @@
 		<!-- Owl Carousel JS -->
 		<script src="${pageContext.request.contextPath}/resources/assets/js/owl.carousel.min.js"></script>
 		<!-- Nice Select JS -->
+
 		<script src="${pageContext.request.contextPath}/resources/assets/js/jquery.nice-select.min.js"></script>
 		<!-- Magnific Popup JS -->
 		<script src="${pageContext.request.contextPath}/resources/assets/js/jquery.magnific-popup.min.js"></script>
@@ -176,5 +177,6 @@
 		<script src="${pageContext.request.contextPath}/resources/assets/js/meanmenu.js"></script>
 		<!-- Custom JS -->
 		<script src="${pageContext.request.contextPath}/resources/assets/js/custom.js"></script>
+
   	</body>
 </html>
