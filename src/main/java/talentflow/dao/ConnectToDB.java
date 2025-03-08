@@ -9,7 +9,8 @@ public class ConnectToDB {
 
     private final String dbURI = "jdbc:mysql://localhost:3306/talentflow?useSSL=false";
     private final String dbUsername = "root";
-    private final String dbPassword = "admin";
+    //private final String dbPassword = "admin";
+    private final String dbPassword = "0000";
 
     public ConnectToDB () {}
 
