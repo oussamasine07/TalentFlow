@@ -46,6 +46,27 @@ public class CandidatureDAO extends ConnectToDB {
 
     private static final String DELETE_CANDIDATURE_BY_ID = "DELETE FROM candidatures WHERE id = ?;";
 
+    private static final String GET_CANDIDATURES_BY_OFFER_ID = "select\n" +
+            "    users.firstName,\n" +
+            "    users.lastName,\n" +
+            "    users.email,\n" +
+            "    candidates.phone,\n" +
+            "    candidates.diplome,\n" +
+            "    candidates.cv,\n" +
+            "    candidatures.id,\n" +
+            "    candidatures.status\n" +
+            "from users\n" +
+            "inner join candidates\n" +
+            "    on users.id = candidates.user_id\n" +
+            "inner join candidatures\n" +
+            "    on candidates.id = candidatures.candidat_id\n" +
+            "inner join offers\n" +
+            "    on offers.id = candidatures.offre_id\n" +
+            "where offers.id = ?;";
+    private static final String UPDATE_CANDIDATURE_STATUS_BY_ID ="update candidatures\n" +
+            "set status = ?\n" +
+            "where id = ? ;";
+
     public CandidatureDAO(){}
 
     public void postuler (Candidature candidature) {
@@ -148,6 +169,59 @@ public class CandidatureDAO extends ConnectToDB {
         catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Candidature> getCandidatureByOfferId ( int offerId ) {
+        List<Candidature> candidatures = new ArrayList<>();
+
+        try(
+                Connection con = getConnection();
+                PreparedStatement stmt = con.prepareStatement(GET_CANDIDATURES_BY_OFFER_ID)
+
+        ){
+            stmt.setInt(1, offerId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()){
+                int id = rs.getInt("id");
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+                String cv = rs.getString("cv");
+                String diplome = rs.getString("diplome");
+                String status = rs.getString("status");
+
+                Candidat candidate = new Candidat(firstName,lastName,email,diplome,phone, cv);
+                Candidature candidature = new Candidature(id, candidate, status);
+
+                candidatures.add(candidature);
+            }
+
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return candidatures;
+    }
+
+    public void updatCandidatureStatusById (int candidatureId, String status ){
+
+        try (
+                Connection con = getConnection();
+                PreparedStatement stmt = con.prepareStatement(UPDATE_CANDIDATURE_STATUS_BY_ID);
+
+                ){
+            stmt.setString(1,status );
+            stmt.setInt(2,candidatureId);
+            stmt.executeUpdate();
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+
     }
 
 }
