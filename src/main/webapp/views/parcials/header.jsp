@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/fonts/flaticon/flaticon.css">
         <!-- Meanmenu CSS -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/meanmenu.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/nice-select.css">
         <!-- Style CSS -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/style.css">
 		<!-- Dark CSS -->
