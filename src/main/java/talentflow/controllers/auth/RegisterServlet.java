@@ -89,7 +89,7 @@ public class RegisterServlet extends HttpServlet {
                 registerDTO.setPassword(hash.getResult());
                 userDAO.registerUser( registerDTO );
                 session.setAttribute("registerSuccess", "Register success, Please login");
-                res.sendRedirect(req.getContextPath() + "/auth/register");// todo add login route
+                res.sendRedirect(req.getContextPath() + "/auth/login");
             }
 
         }
