@@ -2,9 +2,10 @@
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <%@ page import="java.util.Map" %>
 
-<%
-    // todo show alert message
-%>
+    <%
+        Map<String, String> message = (Map<String, String>) session.getAttribute("message");
+         session.removeAttribute("message");
+    %>
 
     <section class="page-title title-bg4">
         <div class="d-table">
@@ -31,6 +32,12 @@
                 <h2>Jobs You May Be Interested In</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida</p>
             </div>
+
+            <% if ( message != null ) { %>
+                <div class="alert <%= message.get("type").equals("success") ? "alert-success" : "alert-danger" %>  alert-dismissible fade show" role="alert">
+                  <strong><%= message.get("message") %></strong>
+                </div>
+            <% } %>
 
             <div class="row justify-content-center">
                 <c:forEach var="offer" items="${offers}" >
