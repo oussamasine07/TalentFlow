@@ -84,8 +84,17 @@
 									<a href="${pageContext.request.contextPath}" class="nav-link active">Home</a>
 								</li>
 								<li class="nav-item">
-									<a href="about.html" class="nav-link">About</a>
+									<a href="#" class="nav-link">About</a>
 								</li>
+
+								<% if ( user != null ) { %>
+								    <li class="nav-item">
+                                        <a href="${pageContext.request.contextPath}/dashboard" class="nav-link">Dashboard</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="${pageContext.request.contextPath}/profile" class="nav-link">Profile</a>
+                                    </li>
+								<% } %>
 
                                 <% if (user != null && user.getRole().equals("recruteur")) { %>
                                     <li class="nav-item">
