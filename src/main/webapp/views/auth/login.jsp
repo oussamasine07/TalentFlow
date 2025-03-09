@@ -12,8 +12,10 @@
     session.removeAttribute("old");
 
     String errorUser = (String) session.getAttribute("errorUser");
-    System.out.println(errorUser);
     session.removeAttribute("errorUser");
+
+    String registerSuccess = (String) session.getAttribute("registerSuccess");
+    session.removeAttribute("registerSuccess");
 %>
 
 
@@ -41,12 +43,22 @@
 <!-- Sign up Section Start -->
 <div class="signup-section ptb-100">
 
-    <% if ( errorUser != null ) { %>
-        <p> <%= errorUser %> </p>
-    <% } %>
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8  ">
+                <% if (errorUser != null) { %>
+                    <div class="alert alert-danger  alert-dismissible fade show" role="alert">
+                      <strong><%= errorUser %></strong>
+                    </div>
+                <% } %>
+                <% if (registerSuccess != null) { %>
+                    <div class="alert alert-success  alert-dismissible fade show" role="alert">
+                      <strong><%= registerSuccess %></strong>
+                    </div>
+                <% } %>
+
+
                 <form class="signup-form" action="${pageContext.request.contextPath}/auth/login" method="POST">
 
                     <div class="form-group">
