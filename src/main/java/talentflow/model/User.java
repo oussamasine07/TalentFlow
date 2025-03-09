@@ -38,6 +38,14 @@ public abstract class User {
         this.password = password;
     }
 
+    public User(int id, String firstName, String lastName, String email, String role) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.role = role;
+    }
+
     public int getId() {
         return id;
     }

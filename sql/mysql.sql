@@ -27,3 +27,18 @@ CREATE TABLE recruiters (
     phone VARCHAR(255),
     FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+SELECT
+    users.id as userId,
+    firstName,
+    lastName,
+    email,
+    role,
+    recruiters.id as recruiterId,
+    company,
+    address,
+    phone
+FROM users
+INNER JOIN recruiters
+    ON users.id = recruiters.user_id
+    WHERE recruiters.user_id = 1;

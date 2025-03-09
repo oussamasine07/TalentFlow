@@ -11,6 +11,7 @@ import java.sql.SQLException;
 public class RecruiterDAO extends ConnectToDB {
 
     private static final String GET_RECRUITER_BY_USER_ID = "SELECT * FROM recruiters WHERE user_id = ?;";
+
     private static final String GET_RECRUITER_BY_ID = "SELECT * FROM recruiters WHERE id = ?;";
 
     public RecruiterDAO () {}
