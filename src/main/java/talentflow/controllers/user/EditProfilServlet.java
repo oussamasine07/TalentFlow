@@ -22,7 +22,8 @@ import java.sql.SQLException;
         "/edit-profile",
         "/edit-profile/update-user",
         "/edit-profile/update-candidat",
-        "/edit-profile/update-recruiter"
+        "/edit-profile/update-recruiter",
+        "/edit-profile/delete"
 })
 public class EditProfilServlet extends HttpServlet {
 
@@ -62,6 +63,9 @@ public class EditProfilServlet extends HttpServlet {
                 break;
             case "/edit-profile/update-recruiter":
                 updateRecruiter(req, res);
+                break;
+            case "/edit-profile/delete":
+                deleteProfile(req, res);
                 break;
 
         }
@@ -130,6 +134,18 @@ public class EditProfilServlet extends HttpServlet {
         User candidat =  new Candidat(user.getId(), diploma, phone, "", "");
         candiatDAO.updateCandidatByUserId(candidat);
         res.sendRedirect(req.getContextPath() + "/edit-profile");
+    }
+
+    private void deleteProfile (HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException
+    {
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("user");
+
+        userDAO.deleteUserById(user.getId());
+
+        session.invalidate();
+        res.sendRedirect(req.getContextPath() + "/auth/login");
     }
 
 

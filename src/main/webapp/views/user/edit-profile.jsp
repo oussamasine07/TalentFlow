@@ -52,9 +52,13 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    <i class='bx bx-coffee-togo'></i>
-                                    Delete Account
+                                <a href="void:javascript()">
+                                    <form action="${pageContext.request.contextPath}/edit-profile/delete" method="POST" >
+                                        <button type="submit">
+                                            <i class='bx bx-coffee-togo'></i>
+                                            Delete Account
+                                        </button>
+                                    </form>
                                 </a>
                             </li>
                         </ul>

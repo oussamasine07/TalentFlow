@@ -19,6 +19,7 @@ public class UserDAO extends ConnectToDB {
             "    lastName = ?,\n" +
             "     email = ?\n" +
             "WHERE id = ?;";
+    private static final String DELETE_USER_BY_ID = "DELETE FROM users WHERE id = ?";
 
     public UserDAO () {}
 
@@ -142,6 +143,19 @@ public class UserDAO extends ConnectToDB {
             stmt.setString(3, user.getEmail());
             stmt.setInt(4, user.getId());
 
+            stmt.executeUpdate();
+        }
+        catch ( SQLException e ){
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteUserById (int userId ) {
+        try (
+                Connection con = getConnection();
+                PreparedStatement stmt = con.prepareStatement(DELETE_USER_BY_ID);
+        ){
+            stmt.setInt(1, userId);
             stmt.executeUpdate();
         }
         catch ( SQLException e ){
