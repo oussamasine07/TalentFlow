@@ -26,6 +26,10 @@ public class Candidat extends User {
         super(id, firstName, lastName, email, role, password);
     }
 
+    public Candidat(int id, String firstName, String lastName, String email, String blank) {
+        super(id, firstName, lastName, email);
+    }
+
     public Candidat(String firstName, String lastName, String email, String role, String password) {
         super(firstName, lastName, email, role, password);
     }

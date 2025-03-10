@@ -14,6 +14,12 @@ public class UserDAO extends ConnectToDB {
     private static final String INSERT_INTO_USERS = "INSERT INTO users (firstName, lastName, email, password, role) VALUES (?, ?, ?, ?, ?);";
     private static final String ADD_RECRUITER = "INSERT INTO recruiters (user_id) values (?);";
     private static final String ADD_CANDIDAT = "INSERT INTO candidates (user_id) values (?);";
+    private static final String UPDATE_USER_BY_ID = "UPDATE users\n" +
+            "    SET firstName = ?,\n" +
+            "    lastName = ?,\n" +
+            "     email = ?\n" +
+            "WHERE id = ?;";
+    private static final String DELETE_USER_BY_ID = "DELETE FROM users WHERE id = ?";
 
     public UserDAO () {}
 
@@ -125,6 +131,36 @@ public class UserDAO extends ConnectToDB {
         }
 
         return user;
+    }
+
+    public void updateUserById ( User user ) {
+        try (
+                Connection con = getConnection();
+                PreparedStatement stmt = con.prepareStatement(UPDATE_USER_BY_ID);
+        ){
+            stmt.setString(1, user.getFirstName());
+            stmt.setString(2, user.getLastName());
+            stmt.setString(3, user.getEmail());
+            stmt.setInt(4, user.getId());
+
+            stmt.executeUpdate();
+        }
+        catch ( SQLException e ){
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteUserById (int userId ) {
+        try (
+                Connection con = getConnection();
+                PreparedStatement stmt = con.prepareStatement(DELETE_USER_BY_ID);
+        ){
+            stmt.setInt(1, userId);
+            stmt.executeUpdate();
+        }
+        catch ( SQLException e ){
+            e.printStackTrace();
+        }
     }
 
 }

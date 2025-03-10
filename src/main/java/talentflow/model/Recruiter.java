@@ -13,8 +13,20 @@ public class Recruiter extends User {
         super(email);
     }
 
+    public Recruiter(int id, String firstName, String lastName, String email, String blank) {
+        super(id, firstName, lastName, email);
+    }
+
     public Recruiter(int id, String firstName, String lastName, String email, String role, String password) {
         super(id, firstName, lastName, email, role, password);
+    }
+
+    public Recruiter(int id, String firstName, String lastName, String email, String role, int recruiterId, String company, String phone, String address) {
+        super(id, firstName, lastName, email, role);
+        this.recruiterId = recruiterId;
+        this.company = company;
+        this.phone = phone;
+        this.address = address;
     }
 
     public Recruiter(String firstName, String lastName, String email, String role, String password) {

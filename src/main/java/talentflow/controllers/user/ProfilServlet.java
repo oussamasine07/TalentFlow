@@ -8,7 +8,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import talentflow.dao.CandiatDAO;
+import talentflow.dao.RecruiterDAO;
 import talentflow.model.Candidat;
+import talentflow.model.Recruiter;
 import talentflow.model.User;
 
 import java.io.IOException;
@@ -17,8 +19,10 @@ import java.io.IOException;
 public class ProfilServlet extends HttpServlet {
 
     CandiatDAO candiatDAO = null;
+    RecruiterDAO recruiterDAO = null;
 
     public void init () {
+        recruiterDAO = new RecruiterDAO();
         candiatDAO = new CandiatDAO();
     }
 
@@ -26,13 +30,13 @@ public class ProfilServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        System.out.println(user);
+        System.out.println("user id is " + user.getId());
 
         // get candidat
-        User candidat = candiatDAO.getCandidatByUserId(user.getId());
+        User userType = user.getRole().equals("recruteur") ? recruiterDAO.getRecruiterByUserId(user.getId()) : candiatDAO.getCandidatByUserId(user.getId());
 
-        request.setAttribute("candidat", candidat);
-        System.out.println(candidat.getFirstName());
+        request.setAttribute("userType", userType);
+        System.out.println("firstname is " + user.getFirstName());
         RequestDispatcher rs = request.getRequestDispatcher("/views/user/profile.jsp");
         rs.forward(request, response);
     }
