@@ -25,6 +25,9 @@ public class UpdateCandidatureStatusServlet extends HttpServlet {
 
         String status = req.getParameter("status");
 
+        System.out.println("candidtatur id" + candidatureId);
+        System.out.println("candidature status" + status);
+
         candidatureDAO.updatCandidatureStatusById(candidatureId,status);
         resp.sendRedirect(req.getContextPath()+"/offer/my-offers");
 

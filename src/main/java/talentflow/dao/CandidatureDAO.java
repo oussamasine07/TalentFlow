@@ -164,6 +164,7 @@ public class CandidatureDAO extends ConnectToDB {
             PreparedStatement stmt = con.prepareStatement(DELETE_CANDIDATURE_BY_ID);
         ){
             stmt.setInt( 1, candidatureId );
+            System.out.println(stmt.toString());
             stmt.executeUpdate();
         }
         catch (SQLException e) {
@@ -215,6 +216,7 @@ public class CandidatureDAO extends ConnectToDB {
                 ){
             stmt.setString(1,status );
             stmt.setInt(2,candidatureId);
+            System.out.println(stmt.toString());
             stmt.executeUpdate();
 
         }

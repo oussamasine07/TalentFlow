@@ -78,7 +78,7 @@
                                     <c:out value="${candidature.status}" />
                                   </td>
                                   <td>
-                                    <form action="${pageContext.request.contextPath}/candidature/update-status?id=<c:out value='${candidature.id}' />" method="POST">
+                                    <form action="${pageContext.request.contextPath}/candidature/update-status" method="POST">
                                         <input type="hidden" name="id" value="<c:out value='${candidature.id}' />">
                                         <select name="status">
                                             <option value="acceptée">Acceptée</option>

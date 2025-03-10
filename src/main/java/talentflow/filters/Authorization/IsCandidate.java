@@ -27,6 +27,13 @@ public class IsCandidate implements Filter {
         User user = (User) session.getAttribute("user");
         String authenticatedUserRole = user != null ? user.getRole() : "";
 
+        String requestURI = httpReq.getRequestURI();
+
+        if (requestURI.equals(httpReq.getContextPath() + "/candidature/update-status")) {
+            chain.doFilter(request, response);
+            return;
+        }
+
         if (user != null && !authenticatedUserRole.equals("condidat")) {
             String referer = httpReq.getHeader("Referer");
             if ( referer != null ) {
