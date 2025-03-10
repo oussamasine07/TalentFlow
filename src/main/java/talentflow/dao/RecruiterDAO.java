@@ -1,6 +1,7 @@
 package talentflow.dao;
 
 import talentflow.model.Recruiter;
+import talentflow.model.User;
 
 
 import java.sql.Connection;
@@ -13,6 +14,11 @@ public class RecruiterDAO extends ConnectToDB {
     private static final String GET_RECRUITER_BY_USER_ID = "SELECT * FROM recruiters WHERE user_id = ?;";
 
     private static final String GET_RECRUITER_BY_ID = "SELECT * FROM recruiters WHERE id = ?;";
+    private static final String UPDATE_RECRUITER_BY_USER_ID = "UPDATE recruiters\n" +
+            "    SET company = ?,\n" +
+            "        address = ?,\n" +
+            "        phone = ?\n" +
+            "WHERE user_id = ?;";
 
     public RecruiterDAO () {}
 
@@ -66,6 +72,23 @@ public class RecruiterDAO extends ConnectToDB {
         }
 
         return recruiter;
+    }
+
+    public void updateRecruiterByUserId(User recruiter) {
+        try (
+                Connection con = getConnection();
+                PreparedStatement stmt = con.prepareStatement(UPDATE_RECRUITER_BY_USER_ID);
+        ){
+            stmt.setString(1, recruiter.getFirstName());
+            stmt.setString(2, recruiter.getLastName());
+            stmt.setString(3, recruiter.getEmail());
+            stmt.setInt(4, recruiter.getId());
+
+            stmt.executeUpdate();
+        }
+        catch ( SQLException e ){
+            e.printStackTrace();
+        }
     }
 
 

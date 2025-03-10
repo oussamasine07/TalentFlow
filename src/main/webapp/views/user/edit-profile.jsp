@@ -125,21 +125,21 @@
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label>Company</label>
-                                                <input type="text" class="form-control" value='<c:out value="${userType.company}" />' name="diploma" placeholder="company">
+                                                <input type="text" class="form-control" value='<c:out value="${userType.company}" />' name="company" placeholder="company">
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label>Phone</label>
-                                                <input type="text" class="form-control" value='<c:out value="${userType.phone}" />' name="diploma" placeholder="Phone">
+                                                <input type="text" class="form-control" value='<c:out value="${userType.phone}" />' name="phone" placeholder="Phone">
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label>Address</label>
-                                                <input type="text" class="form-control" value='<c:out value="${userType.address}" />' name="diploma" placeholder="Address">
+                                                <input type="text" class="form-control" value='<c:out value="${userType.address}" />' name="address" placeholder="Address">
                                             </div>
                                         </div>
 

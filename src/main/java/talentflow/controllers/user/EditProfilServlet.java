@@ -105,14 +105,30 @@ public class EditProfilServlet extends HttpServlet {
     private void updateRecruiter (HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException
     {
-        System.out.println("updating recruter");
+        String company = req.getParameter("company");
+        String phone = req.getParameter("phone");
+        String address = req.getParameter("address");
+
+        HttpSession session = req.getSession();
+
+        User user = (User) session.getAttribute("user");
+        User recruiter = new Recruiter(user.getId(), company, phone, address, "");
+        recruiterDAO.updateRecruiterByUserId(recruiter);
         res.sendRedirect(req.getContextPath() + "/edit-profile");
     }
 
     private void updateCandidat (HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException
     {
-        System.out.println("updating candidat");
+
+        String phone = req.getParameter("phone");
+        String diploma = req.getParameter("diploma");
+
+        HttpSession session = req.getSession();
+
+        User user = (User) session.getAttribute("user");
+        User candidat =  new Candidat(user.getId(), diploma, phone, "", "");
+        candiatDAO.updateCandidatByUserId(candidat);
         res.sendRedirect(req.getContextPath() + "/edit-profile");
     }
 
