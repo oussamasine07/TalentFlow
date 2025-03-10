@@ -25,7 +25,12 @@ public class IsAuthenticated implements Filter {
             "/candidature/delete",
             "/candidature/mes-candidatures",
             "/offer/mes-offer/candidatures",
-            "/candidature/update-status"
+            "/candidature/update-status",
+            "/edit-profile",
+            "/edit-profile/update-user",
+            "/edit-profile/update-candidat",
+            "/edit-profile/update-recruiter",
+            "/edit-profile/delete"
     };
 
     @Override
