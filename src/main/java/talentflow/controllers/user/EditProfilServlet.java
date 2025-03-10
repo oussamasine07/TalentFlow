@@ -9,24 +9,67 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import talentflow.dao.CandiatDAO;
 import talentflow.dao.RecruiterDAO;
+import talentflow.dao.UserDAO;
 import talentflow.model.Candidat;
+import talentflow.model.Recruiter;
 import talentflow.model.User;
 
 import java.awt.datatransfer.DataFlavor;
 import java.io.IOException;
+import java.sql.SQLException;
 
-@WebServlet ("/edit-profile")
+@WebServlet(urlPatterns = {
+        "/edit-profile",
+        "/edit-profile/update-user",
+        "/edit-profile/update-candidat",
+        "/edit-profile/update-recruiter"
+})
 public class EditProfilServlet extends HttpServlet {
 
     CandiatDAO candiatDAO = null;
     RecruiterDAO recruiterDAO = null;
+    UserDAO userDAO = null;
 
     public void init () {
         recruiterDAO = new RecruiterDAO();
         candiatDAO = new CandiatDAO();
+        userDAO = new UserDAO();
+    }
+
+    protected void doPost (HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException
+    {
+        doGet(req, res);
     }
 
     protected void doGet (HttpServletRequest req, HttpServletResponse res)
+        throws ServletException, IOException
+    {
+
+        String action = req.getServletPath();
+
+        System.out.println(action);
+
+        switch (action) {
+            case "/edit-profile":
+                getEditProfile(req, res);
+                break;
+            case "/edit-profile/update-user":
+                updateUser(req, res);
+                break;
+            case "/edit-profile/update-candidat":
+                updateCandidat(req, res);
+                break;
+            case "/edit-profile/update-recruiter":
+                updateRecruiter(req, res);
+                break;
+
+        }
+
+
+    }
+
+    private void getEditProfile (HttpServletRequest req, HttpServletResponse res)
         throws ServletException, IOException
     {
         HttpSession session = req.getSession();
@@ -38,6 +81,39 @@ public class EditProfilServlet extends HttpServlet {
 
         RequestDispatcher rd = req.getRequestDispatcher("/views/user/edit-profile.jsp");
         rd.forward(req, res);
+    }
+
+    private void updateUser (HttpServletRequest req, HttpServletResponse res)
+        throws ServletException, IOException
+    {
+        String firstName = req.getParameter("firstName");
+        String lastName = req.getParameter("lastName");
+        String email = req.getParameter("email");
+
+        HttpSession session = req.getSession();
+
+        User user = (User) session.getAttribute("user");
+        User updatedUser = user.getRole().equals("recruteur") ?
+                                new Recruiter(user.getId(), firstName, lastName, email, "")
+                                : new Candidat(user.getId(), firstName, lastName, email, "");
+
+        userDAO.updateUserById(updatedUser);
+
+        res.sendRedirect(req.getContextPath() + "/edit-profile");
+    }
+
+    private void updateRecruiter (HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException
+    {
+        System.out.println("updating recruter");
+        res.sendRedirect(req.getContextPath() + "/edit-profile");
+    }
+
+    private void updateCandidat (HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException
+    {
+        System.out.println("updating candidat");
+        res.sendRedirect(req.getContextPath() + "/edit-profile");
     }
 
 

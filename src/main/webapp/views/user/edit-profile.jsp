@@ -64,7 +64,7 @@
                 <div class="col-md-8">
                     <div class="account-details">
                         <h3>Basic Information</h3>
-                        <form class="basic-info" action="#" method="POST">
+                        <form class="basic-info" action="${pageContext.request.contextPath}/edit-profile/update-user" method="POST">
                             <div class="row justify-content-center">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -97,7 +97,7 @@
                         <h3>Personal info</h3>
                         <c:choose>
                             <c:when test="${user.role eq 'condidat'}">
-                                <form class="candidates-sociak" action="#" method="POST" >
+                                <form class="candidates-sociak" action="${pageContext.request.contextPath}/edit-profile/update-candidat" method="POST" >
                                     <div class="row justify-content-center">
                                         <div class="col-lg-6">
                                             <div class="form-group">
@@ -120,7 +120,7 @@
                                 </form>
                             </c:when>
                             <c:otherwise>
-                                <form class="candidates-sociak" action="#" method="POST" >
+                                <form class="candidates-sociak" action="${pageContext.request.contextPath}/edit-profile/update-recruiter" method="POST" >
                                     <div class="row justify-content-center">
                                         <div class="col-lg-6">
                                             <div class="form-group">

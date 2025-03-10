@@ -42,3 +42,49 @@ FROM users
 INNER JOIN recruiters
     ON users.id = recruiters.user_id
     WHERE recruiters.user_id = 1;
+
+
+UPDATE users
+    SET firstName = ?,
+         lastName = ?,
+         email = ?
+WHERE id = ?;
+
+UPDATE candidates
+    SET phone = ?,
+        diplome = ?
+WHERE user_id = ?;
+
+UPDATE recruiters
+    SET company = ?,
+        address = ?,
+        phone = ?
+WHERE user_id = ?;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
